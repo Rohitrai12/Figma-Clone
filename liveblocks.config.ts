@@ -15,7 +15,10 @@ const client = createClient({
     //   avatar: userData.avatar.src,
     // }));
 
-    return [];
+    return userIds.map((userId) => ({
+      name: userId,
+      avatar: `https://ui-avatars.com/api/?name=${userId}&background=random`,
+    }));
   },
   async resolveMentionSuggestions({ text, roomId }) {
     // Used only for Comments. Return a list of userIds that match `text`.
@@ -123,6 +126,5 @@ export const {
     useRemoveReaction,
   },
 } = createRoomContext<Presence, Storage, UserMeta, RoomEvent, ThreadMetadata>(
-  client,
-  {}
+  client
 );
